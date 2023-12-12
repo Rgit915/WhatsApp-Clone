@@ -2,29 +2,25 @@ import { extendTheme } from "@chakra-ui/react";
 
 // object created to define the custom styles for the Chakra UI theme.
 const theme = {
-//for dark mode configuration
-config: {
-  intialColorMode: "dark",
-  useSystemColorMode: true,
-},
+  config: {
+    initialColorMode: "dark",
+    useSystemColorMode: true,
+  },
   styles: {
     global: {
       body: {
         margin: 0,
-        "font-family":
-          "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu','Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif",
-        "-webkit-font-smoothing": "antialiased",
-        "-moz-osx-font-smoothing": "grayscale",
+        fontFamily:
+          "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu','Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+        WebkitFontSmoothing: "antialiased",
+        MozOsxFontSmoothing: "grayscale",
       },
-
       code: {
-        "font-family":
-           "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
+        fontFamily:
+          "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
       },
-
     },
   },
-
 };
 
 export default extendTheme(theme);
