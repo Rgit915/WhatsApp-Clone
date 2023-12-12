@@ -2,6 +2,11 @@ import { extendTheme } from "@chakra-ui/react";
 
 // object created to define the custom styles for the Chakra UI theme.
 const theme = {
+//for dark mode configuration
+config: {
+  intialColorMode: "dark",
+  useSystemColorMode: true,
+},
   styles: {
     global: {
       body: {
