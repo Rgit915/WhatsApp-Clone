@@ -37,13 +37,30 @@ const Login = () => {
       <Heading>Log In</Heading>
       <FormControl>
         <FormLabel fontSize="lg" >Username</FormLabel>
-        <Input name="username" placeholder="Enter Username" autoComplete="off" size="lg" />
+        <Input
+          name="username"
+          placeholder="Enter Username"
+          autoComplete="off"
+          size="lg"
+          value={formik.values.username}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
         <FormErrorMessage>Invalid Username</FormErrorMessage>
       </FormControl>
 
       <FormControl>
         <FormLabel fontSize="lg">Password</FormLabel>
-        <Input name="password" placeholder="Enter Password" type="password" autoComplete="off" size="lg" />
+        <Input
+          name="password"
+          placeholder="Enter Password"
+          type="password"
+          autoComplete="off"
+          size="lg"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
         <FormErrorMessage>Invalid password</FormErrorMessage>
       </FormControl>
       <ButtonGroup pt="1rem">
