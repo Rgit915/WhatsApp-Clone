@@ -15,7 +15,15 @@ const Login = () => {
         .required("Password required!") //string that shows user error message when password not provided
         .min(6, "Password too short!")
         .max(28, "Password too long")
-    })
+    }),
+    // onSubmit function called when the form is submitted
+    onSubmit: (values, actions) => {
+      // Displaying form values as an alert
+      alert(JSON.stringify(values, null, 2));
+
+      // Resetting the form after submission
+      actions.resetForm();
+    }
   });
   return <VStack as="form" w={{ base: "90%", md: "500px" }} justify="center" m="auto" h="100vh" spacing="1rem">
     <Heading>Log In</Heading>
