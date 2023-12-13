@@ -1,9 +1,71 @@
-import React from 'react'
+import { VStack, Button, ButtonGroup, Heading } from '@chakra-ui/react';
+import React from 'react';
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import TextField from './TextField';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  return (
-    <div>SignUp</div>
-  )
-}
 
-export default SignUp
+  const navigate = useNavigate();
+
+  return (
+    <Formik
+      initialValues={{ username: "", password: "" }}
+      validationSchema={Yup.object({
+        username: Yup.string()
+          .required("Username required!")
+          .min(6, "username too short!")
+          .max(28, "Username too long"),
+        password: Yup.string()
+          .required("Password required!")
+          .min(6, "Password too short!")
+          .max(28, "Password too long")
+      })}
+
+      onSubmit={(values, actions) => {
+        alert(JSON.stringify(values, null, 2));
+        actions.resetForm();
+      }}
+    >
+      {/* Formik wrapper for managing form state */}
+      <VStack
+        as={Form}  // Rendered as a form element
+        w={{ base: '90%', md: '500px' }}
+        justify="center"
+        m="auto"
+        h="100vh"
+        spacing="1rem"
+      >
+        {/* Heading for the SignUp form */}
+        <Heading>Sign Up</Heading>
+
+        {/* Custom TextField component for username input */}
+        <TextField
+          name="username"
+          placeholder="Enter Username"
+          autocomplete="off"
+          label="Username"
+        />
+
+        {/* Custom TextField component for password input */}
+        <TextField
+          name="password"
+          placeholder="Enter Password"
+          autocomplete="off"
+          label="Password"
+        />
+
+        {/* ButtonGroup containing Create Account & Back buttons */}
+        <ButtonGroup pt="1rem">
+          <Button type="submit" colorScheme="teal">
+            Create Account
+          </Button>
+          <Button onClick={() =>navigate("/")}>Back</Button>
+        </ButtonGroup>
+      </VStack>
+    </Formik>
+  );
+};
+
+export default SignUp;
