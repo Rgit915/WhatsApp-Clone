@@ -35,7 +35,7 @@ const Login = () => {
       onSubmit={formik.handleSubmit}
     >
       <Heading>Log In</Heading>
-      <FormControl>
+      <FormControl isInvalid={formik.errors.username && formik.touched}>
         <FormLabel fontSize="lg" >Username</FormLabel>
         <Input
           name="username"
@@ -49,7 +49,7 @@ const Login = () => {
         <FormErrorMessage>Invalid Username</FormErrorMessage>
       </FormControl>
 
-      <FormControl>
+      <FormControl isInvalid={formik.errors.password && formik.touched}>
         <FormLabel fontSize="lg">Password</FormLabel>
         <Input
           name="password"
