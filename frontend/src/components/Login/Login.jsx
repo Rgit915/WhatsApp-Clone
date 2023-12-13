@@ -3,8 +3,10 @@ import React from 'react';
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import TextField from './TextField';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
 
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
@@ -41,6 +43,7 @@ const Login = () => {
           name="username"
           placeholder="Enter Username"
           autocomplete="off"
+          label="Username"
         />
 
         {/* Custom TextField component for password input */}
@@ -48,6 +51,7 @@ const Login = () => {
           name="password"
           placeholder="Enter Password"
           autocomplete="off"
+          label="Password"
         />
 
         {/* ButtonGroup containing Log in and Create Account buttons */}
@@ -55,7 +59,7 @@ const Login = () => {
           <Button type="submit" colorScheme="teal">
             Log in
           </Button>
-          <Button>Create Account</Button>
+          <Button onClick={()=> navigate("/register")}>Create Account</Button>
         </ButtonGroup>
       </VStack>
     </Formik>
