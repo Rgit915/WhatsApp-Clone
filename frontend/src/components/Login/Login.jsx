@@ -1,10 +1,11 @@
-import { FormControl, FormLabel, VStack, Input, Button, ButtonGroup, FormErrorMessage, Heading } from '@chakra-ui/react';
+import { VStack, Button, ButtonGroup, Heading } from '@chakra-ui/react';
 import React from 'react';
-import {Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import TextField from './TextField';
 const Login = () => {
 
-   return (
+  return (
     <Formik
       initialValues={{ username: "", password: "" }}
       validationSchema={Yup.object({
@@ -23,52 +24,42 @@ const Login = () => {
         actions.resetForm();
       }}
     >
-      {(formik) =>(
-        <VStack
-        as={Form}
-        w={{ base: "90%", md: "500px" }}
+      {/* Formik wrapper for managing form state */}
+      <VStack
+        as={Form}  // Rendered as a form element
+        w={{ base: '90%', md: '500px' }}
         justify="center"
         m="auto"
         h="100vh"
         spacing="1rem"
       >
+        {/* Heading for the login form */}
         <Heading>Log In</Heading>
-        <FormControl isInvalid={formik.errors.username && formik.touched}>
-          <FormLabel fontSize="lg" >Username</FormLabel>
-          <Input
-            name="username"
-            placeholder="Enter Username"
-            autoComplete="off"
-            size="lg"
-            {...formik.getFieldProps("username")}
-          />
-          <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
-        </FormControl>
 
-        <FormControl isInvalid={formik.errors.password && formik.touched}>
-          <FormLabel fontSize="lg">Password</FormLabel>
-          <Input
-            name="password"
-            placeholder="Enter Password"
-            type="password"
-            autoComplete="off"
-            size="lg"
-            {...formik.getFieldProps("password")}
-          />
-          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-        </FormControl>
+        {/* Custom TextField component for username input */}
+        <TextField
+          name="username"
+          placeholder="Enter Username"
+          autocomplete="off"
+        />
+
+        {/* Custom TextField component for password input */}
+        <TextField
+          name="password"
+          placeholder="Enter Password"
+          autocomplete="off"
+        />
+
+        {/* ButtonGroup containing Log in and Create Account buttons */}
         <ButtonGroup pt="1rem">
-          <Button type="submit" colorScheme="teal">Log in</Button>
+          <Button type="submit" colorScheme="teal">
+            Log in
+          </Button>
           <Button>Create Account</Button>
         </ButtonGroup>
-
       </VStack>
-      )}
-
     </Formik>
-
   );
-
 };
 
 export default Login;
