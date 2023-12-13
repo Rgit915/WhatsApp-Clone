@@ -42,9 +42,7 @@ const Login = () => {
           placeholder="Enter Username"
           autoComplete="off"
           size="lg"
-          value={formik.values.username}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("username")}
         />
         <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
       </FormControl>
@@ -57,9 +55,7 @@ const Login = () => {
           type="password"
           autoComplete="off"
           size="lg"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("password")}
         />
         <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
       </FormControl>
