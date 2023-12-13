@@ -1,12 +1,10 @@
 import { FormControl, FormLabel, VStack, Input, Button, ButtonGroup, FormErrorMessage, Heading } from '@chakra-ui/react';
 import React from 'react';
-import { useFormik } from "formik";
+import {Formik } from "formik";
 import * as Yup from "yup";
 const Login = () => {
 
-  const formik = useFormik({});
-  
-  return (
+   return (
     <Formik
       initialValues={{ username: "", password: "" }}
       validationSchema={Yup.object({
@@ -25,7 +23,8 @@ const Login = () => {
         actions.resetForm();
       }}
     >
-      <VStack
+      {(formik) =>(
+        <VStack
         as="form" w={{ base: "90%", md: "500px" }}
         justify="center"
         m="auto"
@@ -64,6 +63,8 @@ const Login = () => {
         </ButtonGroup>
 
       </VStack>
+      )}
+
     </Formik>
 
   );
