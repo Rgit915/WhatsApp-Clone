@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, VStack, Input, Button, ButtonGroup, FormErrorMessage, Heading } from '@chakra-ui/react';
 import React from 'react';
-import {Formik } from "formik";
+import {Form, Formik } from "formik";
 import * as Yup from "yup";
 const Login = () => {
 
@@ -25,12 +25,12 @@ const Login = () => {
     >
       {(formik) =>(
         <VStack
-        as="form" w={{ base: "90%", md: "500px" }}
+        as={Form}
+        w={{ base: "90%", md: "500px" }}
         justify="center"
         m="auto"
         h="100vh"
         spacing="1rem"
-        onSubmit={formik.handleSubmit}
       >
         <Heading>Log In</Heading>
         <FormControl isInvalid={formik.errors.username && formik.touched}>
