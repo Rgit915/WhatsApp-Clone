@@ -2,20 +2,20 @@ import { FormControl, FormLabel, VStack, Input, Button, ButtonGroup, FormErrorMe
 import React from 'react';
 
 const Login = () => {
-  return <VStack as="form"  w={{ base: "90%", md: "500px" }} justify="center" m="auto" h="100vh">
+  return <VStack as="form"  w={{ base: "90%", md: "500px" }} justify="center" m="auto" h="100vh" spacing="1rem">
     <FormControl>
-      <FormLabel >Username</FormLabel>
-      <Input name="username" placeholder="Enter Username" autoComplete="off" />
+      <FormLabel fontSize="lg" >Username</FormLabel>
+      <Input name="username" placeholder="Enter Username" autoComplete="off" size="lg"/>
       <FormErrorMessage>Invalid Username</FormErrorMessage>
     </FormControl>
 
     <FormControl>
-      <FormLabel >Password</FormLabel>
-      <Input name="password" placeholder="Enter Password" type="password" autoComplete="off"/>
+      <FormLabel fontSize="lg">Password</FormLabel>
+      <Input name="password" placeholder="Enter Password" type="password" autoComplete="off" size="lg"/>
       <FormErrorMessage>Invalid password</FormErrorMessage>
     </FormControl>
-<ButtonGroup>
-   <Button  type="submit">Log in</Button>
+<ButtonGroup pt="1rem">
+   <Button  type="submit" colorScheme="teal">Log in</Button>
    <Button>Create Account</Button>
 </ButtonGroup>
 
