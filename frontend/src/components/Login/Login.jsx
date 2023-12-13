@@ -46,7 +46,7 @@ const Login = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        <FormErrorMessage>Invalid Username</FormErrorMessage>
+        <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
       </FormControl>
 
       <FormControl isInvalid={formik.errors.password && formik.touched}>
@@ -61,7 +61,7 @@ const Login = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        <FormErrorMessage>Invalid password</FormErrorMessage>
+        <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
       </FormControl>
       <ButtonGroup pt="1rem">
         <Button type="submit" colorScheme="teal">Log in</Button>
