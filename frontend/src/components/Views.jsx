@@ -8,6 +8,8 @@ const Views = () => {
     <Routes>
       <Route path="/" element={<Login/>} />
       <Route path="/register" element={<SignUp/>}/>
+      {/* for any unmatched route render the login page */}
+      <Route path="*" element={<Login/>}/>
     </Routes>
   )
 }
