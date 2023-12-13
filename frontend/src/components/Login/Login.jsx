@@ -1,7 +1,13 @@
 import { FormControl, FormLabel, VStack, Input, Button, ButtonGroup, FormErrorMessage, Heading } from '@chakra-ui/react';
 import React from 'react';
+import { useFormik } from "formik";
 
 const Login = () => {
+
+  const formik = useFormik({
+    initialValues: {username: "" , password: ""}, //Formik uses the name of the Input tp track its value
+
+  })
   return <VStack as="form" w={{ base: "90%", md: "500px" }} justify="center" m="auto" h="100vh" spacing="1rem">
     <Heading>Log In</Heading>
     <FormControl>
