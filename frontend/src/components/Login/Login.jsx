@@ -1,72 +1,69 @@
-import { FormControl, FormLabel, VStack, Input, Button, ButtonGroup, FormErrorMessage, Heading } from '@chakra-ui/react';
+import { VStack, Button, ButtonGroup, Heading } from '@chakra-ui/react';
 import React from 'react';
-import { useFormik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import TextField from './TextField';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
 
-  const formik = useFormik({
-    initialValues: { username: "", password: "" }, //Formik uses the name of the Input tp track its value
-    validationSchema: Yup.object({
-      username: Yup.string()
-        .required("Username required!") //string that shows user error message when username not provided
-        .min(6, "username too short!")
-        .max(28, "Username too long"),
-      password: Yup.string()
-        .required("Password required!") //string that shows user error message when password not provided
-        .min(6, "Password too short!")
-        .max(28, "Password too long")
-    }),
-    // onSubmit function called when the form is submitted
-    onSubmit: (values, actions) => {
-      // Displaying form values as an alert
-      alert(JSON.stringify(values, null, 2));
-
-      // Resetting the form after submission
-      actions.resetForm();
-    }
-  });
+  const navigate = useNavigate();
   return (
-    <VStack
-      as="form" w={{ base: "90%", md: "500px" }}
-      justify="center"
-      m="auto"
-      h="100vh"
-      spacing="1rem"
-      onSubmit={formik.handleSubmit}
+    <Formik
+      initialValues={{ username: "", password: "" }}
+      validationSchema={Yup.object({
+        username: Yup.string()
+          .required("Username required!")
+          .min(6, "username too short!")
+          .max(28, "Username too long"),
+        password: Yup.string()
+          .required("Password required!")
+          .min(6, "Password too short!")
+          .max(28, "Password too long")
+      })}
+
+      onSubmit={(values, actions) => {
+        alert(JSON.stringify(values, null, 2));
+        actions.resetForm();
+      }}
     >
-      <Heading>Log In</Heading>
-      <FormControl isInvalid={formik.errors.username && formik.touched}>
-        <FormLabel fontSize="lg" >Username</FormLabel>
-        <Input
+      {/* Formik wrapper for managing form state */}
+      <VStack
+        as={Form}  // Rendered as a form element
+        w={{ base: '90%', md: '500px' }}
+        justify="center"
+        m="auto"
+        h="100vh"
+        spacing="1rem"
+      >
+        {/* Heading for the login form */}
+        <Heading>Log In</Heading>
+
+        {/* Custom TextField component for username input */}
+        <TextField
           name="username"
           placeholder="Enter Username"
-          autoComplete="off"
-          size="lg"
-          {...formik.getFieldProps("username")}
+          autocomplete="off"
+          label="Username"
         />
-        <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
-      </FormControl>
 
-      <FormControl isInvalid={formik.errors.password && formik.touched}>
-        <FormLabel fontSize="lg">Password</FormLabel>
-        <Input
+        {/* Custom TextField component for password input */}
+        <TextField
           name="password"
           placeholder="Enter Password"
-          type="password"
-          autoComplete="off"
-          size="lg"
-          {...formik.getFieldProps("password")}
+          autocomplete="off"
+          label="Password"
         />
-        <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-      </FormControl>
-      <ButtonGroup pt="1rem">
-        <Button type="submit" colorScheme="teal">Log in</Button>
-        <Button>Create Account</Button>
-      </ButtonGroup>
 
-    </VStack>
+        {/* ButtonGroup containing Log in and Create Account buttons */}
+        <ButtonGroup pt="1rem">
+          <Button type="submit" colorScheme="teal">
+            Log in
+          </Button>
+          <Button onClick={()=> navigate("/register")}>Create Account</Button>
+        </ButtonGroup>
+      </VStack>
+    </Formik>
   );
-
 };
 
 export default Login;
