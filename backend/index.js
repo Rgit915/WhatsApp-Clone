@@ -4,6 +4,7 @@ const express = require('express');
 const { Server } = require('socket.io');
 // Import helmet for setting various HTTP headers to enhance security
 const helmet = require('helmet');
+const cors = require('cors')
 
 const port = 4000;
 
@@ -23,6 +24,12 @@ const io = new Server(server, {
 
 // Add middleware - Use helmet
 app.use(helmet());
+
+//Enable CORS middleware to handle cross-origin HTTP requests
+app.use(cors({
+  origin: "http://localhost:3000", // Allow requests from this origin
+  credentials: true, //Include credentials (e.g., cookies) in cross-origin requests
+}))
 
 // Parse JSON requests
 app.use(express.json());
