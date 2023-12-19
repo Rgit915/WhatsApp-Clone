@@ -14,4 +14,25 @@ const formSchema = Yup.object({
     .max(28, "Username too long"),
 });
 
+// create a route for /login
+router.post("/login", (req, res) => {
+  const formData = req.body;
+
+  // Validate the form data using Yup schema
+  formSchema
+    .validate(formData)
+    .catch(err => {
+      // Log validation errors to the console
+      console.log(err.errors);
+    })
+    .then(valid => {
+      if (valid) {
+        // The form is valid, handle the login logic here
+        console.log("Form is valid!");
+
+      }
+    });
+});
+
+
 module.exports = router;
