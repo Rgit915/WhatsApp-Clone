@@ -5,6 +5,7 @@ const { Server } = require('socket.io');
 // Import helmet for setting various HTTP headers to enhance security
 const helmet = require('helmet');
 const cors = require('cors')
+const authRouter = require('./routers/authRouter');
 
 const port = 4000;
 
@@ -33,6 +34,8 @@ app.use(cors({
 
 // Parse JSON requests
 app.use(express.json());
+
+app.use("/auth", authRouter);
 
 // Define a route for handling HTTP GET requests to the root path '/'
 app.get('/', (request, response) => {
