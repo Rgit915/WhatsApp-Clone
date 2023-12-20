@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@whatsapp-clone/backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
