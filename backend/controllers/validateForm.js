@@ -1,3 +1,5 @@
+//import formSchema from common package
+const { formSchema } = require("@whatsapp-clone/common");
 
 const validateForm = (req, res) =>{
   const formData = req.body;
