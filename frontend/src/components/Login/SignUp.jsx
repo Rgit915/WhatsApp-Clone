@@ -82,6 +82,7 @@ const SignUp = () => {
           placeholder="Enter Password"
           autocomplete="off"
           label="Password"
+          type="password"
         />
 
         {/* ButtonGroup containing Create Account & Back buttons */}

@@ -80,6 +80,7 @@ const Login = () => {
           placeholder="Enter Password"
           autocomplete="off"
           label="Password"
+          type="password"
         />
 
         {/* ButtonGroup containing Log in and Create Account buttons */}
