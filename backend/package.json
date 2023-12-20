@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@whatsapp-clone/backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@whatsapp-clone/common": "file:../common",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "helmet": "^7.1.0",
     "socket.io": "^4.7.2"
