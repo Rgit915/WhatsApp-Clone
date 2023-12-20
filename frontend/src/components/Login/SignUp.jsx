@@ -1,10 +1,10 @@
 import { VStack, Button, ButtonGroup, Heading } from '@chakra-ui/react';
 import React from 'react';
 import { Form, Formik } from "formik";
-import * as Yup from "yup";
 import TextField from './TextField';
 import { useNavigate } from 'react-router-dom';
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import { formSchema } from "@whatsapp-clone/common";
 
 const SignUp = () => {
 
@@ -13,16 +13,7 @@ const SignUp = () => {
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
-      validationSchema={Yup.object({
-        username: Yup.string()
-          .required("Username required!")
-          .min(6, "username too short!")
-          .max(28, "Username too long"),
-        password: Yup.string()
-          .required("Password required!")
-          .min(6, "Password too short!")
-          .max(28, "Password too long")
-      })}
+      validationSchema={formSchema}
 
       onSubmit={(values, actions) => {
         // Create a shallow copy of the 'values' object
