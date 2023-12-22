@@ -4,8 +4,10 @@ const express = require('express');
 const { Server } = require('socket.io');
 // Import helmet for setting various HTTP headers to enhance security
 const helmet = require('helmet');
-const cors = require('cors')
+const cors = require('cors');
 const authRouter = require('./routers/authRouter');
+const session = require("express-session");
+require("dotenv").config();
 
 const port = 4000;
 
@@ -30,11 +32,25 @@ app.use(helmet());
 app.use(cors({
   origin: "http://localhost:3000", // Allow requests from this origin
   credentials: true, //Include credentials (e.g., cookies) in cross-origin requests
-}))
+}));
 
 // Parse JSON requests
 app.use(express.json());
 
+//Configure and use Express Session Middleware
+app.use(session({
+  secret: process.env.COOKIE_SECRET, // A secret string used to sign the session ID cookie for security
+  credentials: true,  // allow the session cookie to be sent in cross-origin requests.
+  name: "sid",
+  resave: false,
+  saveUninitialized: false,
+  //cookie settings
+  cookie: {
+    secure: process.env.ENVIRONMENT === "production",
+    httpOnly: true,
+    sameSite: process.env.ENVIRONMENT === "production" ? "none" : "lax",
+  },
+}));
 app.use("/auth", authRouter);
 
 // Define a route for handling HTTP GET requests to the root path '/'
