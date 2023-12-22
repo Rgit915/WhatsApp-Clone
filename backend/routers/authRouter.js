@@ -23,9 +23,13 @@ router.post("/signup", async (req, res) => {
    // If the username doesn't exist, register the new user
     const hashedPass = await bcrypt.hash(req.body.password, 10);
     const newUserQuery = await pool.query(
-      "INSERT INTO users(username, passhash) values($1,$2) RETURNING username",
+      "INSERT INTO users(username, passhash) values($1,$2) RETURNING id, username",
       [req.body.username, hashedPass]
     );
+    req.session.user = {
+      username,
+      id: newUserQuery.rows[0].id,
+    }
     res.json({ loggedIn: true, username });
   } else {
      // If the username already exists, send a response indicating it's taken
